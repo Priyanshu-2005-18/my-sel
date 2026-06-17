@@ -1,28 +1,35 @@
-pipeline{
-agent any
-stages{
-stage('Clone Repository'){steps{
-git branch: 'main' ,
- url:'https://github.com/Priyanshu-2005-18/my-sel.git' }
- }
- stage('Build') {
- steps {
- sh 'mvn clean compile'
- }
- }
- stage('Test Automation') {
- steps {
- sh 'mvn test'
- }
- }
- 
- }
-  post {
- success {
- echo 'https://www.saucedemo.com'
- }
- failure {
- echo 'Build failed!'
- }
- }
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Priyanshu-2005-18/my-sel.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test Automation') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo 'https://www.saucedemo.com'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
 }
